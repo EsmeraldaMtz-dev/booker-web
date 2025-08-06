@@ -1,15 +1,13 @@
 package org.upskillher.web.maps;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class HomePageMaps {
-    @FindBy(css="a[href*='#/rooms']")
-    public WebElement headerRoomsLink;
-
-    @FindBy(id="rooms")
-    public WebElement roomsSection;
+    public static final By HEADER_ROOMS_LINK = By.cssSelector("a[href='/#rooms']");
+    public static final By ROOMs_SECTION = By.id("rooms");
 
 }

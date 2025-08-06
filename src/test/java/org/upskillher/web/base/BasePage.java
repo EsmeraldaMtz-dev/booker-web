@@ -3,7 +3,6 @@ package org.upskillher.web.base;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
@@ -20,19 +19,18 @@ public abstract class BasePage {
     public BasePage(WebDriver driver){
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        PageFactory.initElements(driver, this);
     }
 
     //Wait for Element to be available to click
-    protected WebElement waitForElementClickable(WebElement element){
-        log.debug("Waiting for element to be clickable: {}", element);
-        return wait.until(ExpectedConditions.elementToBeClickable(element)); //Aqui marca el error
+    protected WebElement waitForElementClickable(By locator){
+        log.debug("Waiting for element to be clickable: {}", locator);
+        return wait.until(ExpectedConditions.elementToBeClickable(locator)); //Aqui marca el error
     }
 
     //Ensure clickable element is safe to click
-    protected void safeClick(WebElement element) {
-        waitForElementClickable(element).click();
-        log.debug("Clicked on element: {}", element.getTagName());
+    protected void safeClick(By locator) {
+        waitForElementClickable(locator).click();
+        log.debug("Clicked on element: {}", locator);
     }
 
 }

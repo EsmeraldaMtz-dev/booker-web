@@ -11,11 +11,11 @@ public class HomePageTests extends BaseTest {
 
     private static final Logger log = LoggerFactory.getLogger(HomePageTests.class);
 
-    protected HomePage homePage = new HomePage(driver);
-
 
     @Test
     public void headerLinksTest(){
+        HomePage homePage = new HomePage(driver);
+        navigateToHomePage();
         homePage.headerRoomsLinkClick();
         Assert.assertTrue(homePage.isRoomsSectionDisplayed());
     }
