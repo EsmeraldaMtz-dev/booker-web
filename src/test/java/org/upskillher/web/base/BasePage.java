@@ -23,11 +23,16 @@ public abstract class BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    protected WebElement waitForElementClickable(By locator){
-        log.debug("Waiting for element to be visible: {}", locator);
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    //Wait for Element to be available to click
+    protected WebElement waitForElementClickable(WebElement element){
+        log.debug("Waiting for element to be clickable: {}", element);
+        return wait.until(ExpectedConditions.elementToBeClickable(element)); //Aqui marca el error
     }
-    protected void safeClick(WebElement element) {
 
+    //Ensure clickable element is safe to click
+    protected void safeClick(WebElement element) {
+        waitForElementClickable(element).click();
+        log.debug("Clicked on element: {}", element.getTagName());
     }
+
 }

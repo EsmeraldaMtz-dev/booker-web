@@ -1,23 +1,23 @@
 package org.upskillher.web.tests;
 
-import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.upskillher.web.base.BasePage;
 import org.upskillher.web.base.BaseTest;
-import org.upskillher.web.maps.HomePageMaps;
+import org.upskillher.web.pages.HomePage;
 
-public class HomePageTests extends BasePage {
+public class HomePageTests extends BaseTest {
+
     private static final Logger log = LoggerFactory.getLogger(HomePageTests.class);
 
-    public HomePageTests(WebDriver driver) {
-        super(driver);
-    }
+    protected HomePage homePage = new HomePage(driver);
+
 
     @Test
-    public void clickHeaderRoomsLink(){
-        safeClick(HomePageMaps.headerRoomsLink);
+    public void headerLinksTest(){
+        homePage.headerRoomsLinkClick();
+        Assert.assertTrue(homePage.isRoomsSectionDisplayed());
     }
 
 }
