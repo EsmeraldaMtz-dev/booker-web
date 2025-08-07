@@ -1,11 +1,11 @@
 package org.upskillher.web.pages;
 
 import io.qameta.allure.Step;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.upskillher.web.base.BasePage;
 import org.upskillher.web.maps.HomePageMaps;
-import org.openqa.selenium.support.PageFactory;
 import org.upskillher.web.utils.Utils;
 
 public class HomePage extends BasePage {
@@ -13,17 +13,15 @@ public class HomePage extends BasePage {
         super(driver);
     }
 
+    /*----- NAVBAR Test Steps ----------------------------------------------------------------------------------------*/
     @Step
-    public void headerRoomsLinkClick(){
-        safeClick(HomePageMaps.HEADER_ROOMS_LINK);
-    }
-
-    @Step
-    public boolean isRoomsSectionDisplayed(){
-        WebElement roomsSection = driver.findElement(HomePageMaps.ROOMs_SECTION);
+    public boolean isSectionDisplayedWhenNavarLinkClicked(By linkLocator, By sectionLocator, String sectionName){
+        safeClick(linkLocator);
+        WebElement roomsSection = driver.findElement(sectionLocator);
         String[] splitedUrl = Utils.safeSplit(driver.getCurrentUrl(), "#");
         return roomsSection.isDisplayed()
-                && splitedUrl[1].equals("rooms");
+                && splitedUrl[1].equals(sectionName);
     }
+
 
 }
