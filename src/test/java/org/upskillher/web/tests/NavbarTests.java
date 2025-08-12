@@ -33,4 +33,31 @@ public class NavbarTests extends BaseTest {
         navigateToHomePage();
         Assert.assertTrue(homePage.isSectionDisplayedWhenNavarLinkClicked(HomePageMaps.HEADER_BOOKING_LINK, HomePageMaps.BOOKING_SECTION, "booking"));
     }
+
+    /*@Test
+    @Description("Verify Amenities Link navigates correctly")
+    @Severity(SeverityLevel.NORMAL)
+    public void amenitiesLinkTest(){
+        HomePage homePage = new HomePage(driver);
+        navigateToHomePage();
+        Assert.assertTrue(homePage.isSectionDisplayedWhenNavarLinkClicked(HomePageMaps.HEADER_AMENITIES_LINK, HomePageMaps.AMENITIES_SECTION, "amenities"));
+    }*/
+
+    @Test
+    @Description("Verify Location Link navigates correctly")
+    @Severity(SeverityLevel.NORMAL)
+    public void locationLinkTest(){
+        HomePage homePage = new HomePage(driver);
+        navigateToHomePage();
+        Assert.assertTrue(homePage.isSectionDisplayedWhenNavarLinkClicked(HomePageMaps.HEADER_LOCATION_LINK, HomePageMaps.LOCATION_SECTION, "location"));
+    }
+
+    @Test
+    @Description("Verify Contact Link navigates correctly")
+    @Severity(SeverityLevel.NORMAL)
+    public void contactLinkTest(){
+        HomePage homePage = new HomePage(driver);
+        navigateToHomePage();
+        Assert.assertTrue(homePage.isSectionDisplayedWhenNavarLinkClicked(HomePageMaps.HEADER_CONTACT_LINK, HomePageMaps.CONTACT_SECTION, "contact"));
+    }
 }
