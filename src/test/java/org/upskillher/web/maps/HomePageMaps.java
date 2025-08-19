@@ -14,4 +14,8 @@ public class HomePageMaps {
     public static final By HEADER_CONTACT_LINK = By.cssSelector("a[href='/#contact']");
     public static final By CONTACT_SECTION = By.id("contact");
 
+    /*-------------------------------BOOKING SECTION------------------------------------------*/
+    public static final By CHECK_AVAILABILITY_BTN = By.xpath("//button[text()='Check Availability']");
+    public static final By CHECK_IN_DATE_INPUT = By.xpath("//div[preceding-sibling::label[@for='checkin']]/div/input");
+    public static final By CHECK_OUT_DATE_INPUT = By.xpath("//div[preceding-sibling::label[@for='checkout']]/div/input");
 }

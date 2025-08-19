@@ -23,5 +23,14 @@ public class HomePage extends BasePage {
                 && splitedUrl[1].equals(sectionName);
     }
 
+    @Step
+    public String getCheckinAndCheckoutDataFromHomePage(By checkInDateInput, By checkOutDateInput){
 
+    }
+
+    @Step
+    public void checkRoomsAvailavility(By checkAvailabilityBtn){
+        getSafeText()
+        safeClick(checkAvailabilityBtn);
+    }
 }

@@ -23,14 +23,20 @@ public abstract class BasePage {
 
     //Wait for Element to be available to click
     protected WebElement waitForElementClickable(By locator){
-        log.debug("Waiting for element to be clickable: {}", locator);
+        log.debug("Waiting for element to be clickable: '{}'", locator);
         return wait.until(ExpectedConditions.elementToBeClickable(locator)); //Aqui marca el error
     }
 
     //Ensure clickable element is safe to click
     protected void safeClick(By locator) {
         waitForElementClickable(locator).click();
-        log.debug("Clicked on element: {}", locator);
+        log.debug("Clicked on element: '{}'", locator);
+    }
+
+    protected String getSafeText(By locator){
+        String safeText = wait.until(ExpectedConditions.visibilityOf(locator.findElement())).getText();
+        log.debug("Getting text from '{}'", locator);
+        return safeText;
     }
 
 }
