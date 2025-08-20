@@ -38,3 +38,7 @@ build/
 .idea/
 ### Mac OS ###
 .DS_Store
+
+# Allure reports
+allure-results/
+allure-report/

@@ -8,6 +8,9 @@ import org.upskillher.web.base.BasePage;
 import org.upskillher.web.maps.HomePageMaps;
 import org.upskillher.web.utils.Utils;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class HomePage extends BasePage {
     public HomePage(WebDriver driver){
         super(driver);
@@ -24,13 +27,22 @@ public class HomePage extends BasePage {
     }
 
     @Step
-    public String getCheckinAndCheckoutDataFromHomePage(By checkInDateInput, By checkOutDateInput){
-
+    public String getDateInputData(By dateInput){
+        return getSafeText(dateInput);
     }
 
     @Step
-    public void checkRoomsAvailavility(By checkAvailabilityBtn){
-        getSafeText()
+    public void clickcheckAvailabilityBtn(By checkAvailabilityBtn){
         safeClick(checkAvailabilityBtn);
+    }
+
+
+
+    @Step
+    public List<String> checkRoomsAvailabilityWithDefaultDate(){
+        return driver.findElements(HomePageMaps.ROOM_BOOK_NOW_BTNS)
+                .stream()
+                .map(webElement -> webElement.getAttribute("href"))
+                .collect(Collectors.toList());
     }
 }

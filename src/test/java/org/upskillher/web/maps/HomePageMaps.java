@@ -18,4 +18,7 @@ public class HomePageMaps {
     public static final By CHECK_AVAILABILITY_BTN = By.xpath("//button[text()='Check Availability']");
     public static final By CHECK_IN_DATE_INPUT = By.xpath("//div[preceding-sibling::label[@for='checkin']]/div/input");
     public static final By CHECK_OUT_DATE_INPUT = By.xpath("//div[preceding-sibling::label[@for='checkout']]/div/input");
+
+    /*-------------------------------ROOMS SECTION------------------------------------------*/
+    public static final By ROOM_BOOK_NOW_BTNS = By.xpath("//a[contains(@href, '/reservation/')]");
 }

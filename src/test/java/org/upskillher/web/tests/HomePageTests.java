@@ -60,8 +60,9 @@ public class HomePageTests extends BaseTest {
     }
 
     @Test
+    @Description("Verify Available Rooms are displayed")
+    @Severity(SeverityLevel.NORMAL)
     public void searchRooms(){
-        homePage.checkRoomsAvailavility(HomePageMaps.CHECK_AVAILABILITY_BTN);
-        Assert.
+        Assert.assertFalse(homePage.checkRoomsAvailabilityWithDefaultDate().isEmpty());
     }
 }

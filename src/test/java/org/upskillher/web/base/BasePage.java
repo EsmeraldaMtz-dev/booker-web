@@ -21,21 +21,45 @@ public abstract class BasePage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
+    // Wait for element to be visible using By locator
+    protected WebElement waitForElementVisible(By locator) {
+        log.debug("Waiting for element to be visible: '{}'", locator);
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
     //Wait for Element to be available to click
     protected WebElement waitForElementClickable(By locator){
         log.debug("Waiting for element to be clickable: '{}'", locator);
         return wait.until(ExpectedConditions.elementToBeClickable(locator)); //Aqui marca el error
     }
 
-    //Ensure clickable element is safe to click
+    //Ensure clickable WebElement is safe to click By locator
     protected void safeClick(By locator) {
         waitForElementClickable(locator).click();
         log.debug("Clicked on element: '{}'", locator);
     }
 
+    //Ensure clickable element is safe to click
+    protected void safeClick(WebElement element) {
+        waitForElementClickable(element).click(); ///Aqui marca el error
+        log.debug("Clicked on WebElement: '{}'", element);
+    }
+
+    //Wait for WebElement to be available to click
+    protected WebElement waitForElementClickable(WebElement element){
+        log.debug("Waiting for WebElement to be clickable: '{}'", element);
+        return wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
     protected String getSafeText(By locator){
-        String safeText = wait.until(ExpectedConditions.visibilityOf(locator.findElement())).getText();
+        String safeText = wait.until(ExpectedConditions.visibilityOf((WebElement) locator)).getText();
         log.debug("Getting text from '{}'", locator);
+        return safeText;
+    }
+
+    protected String getSafeText(WebElement element){
+        String safeText = wait.until(ExpectedConditions.visibilityOf(element)).getText();
+        log.debug("Getting text from WebElement '{}'", element);
         return safeText;
     }
 
