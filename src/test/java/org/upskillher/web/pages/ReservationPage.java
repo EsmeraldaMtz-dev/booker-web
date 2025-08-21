@@ -30,4 +30,9 @@ public class ReservationPage extends BasePage {
                 .map(this::getSafeText)
                 .collect(Collectors.toList());
     }
+
+    @Step
+    public void getValidRoomHrefs(){
+
+    }
 }

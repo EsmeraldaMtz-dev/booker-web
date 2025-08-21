@@ -16,6 +16,8 @@ import org.upskillher.web.pages.HomePage;
 import org.upskillher.web.pages.ReservationPage;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 public class ReservationPageTests extends BaseTest {
 
@@ -32,7 +34,7 @@ public class ReservationPageTests extends BaseTest {
         softAssert = new SoftAssert();
         navigateToHomePage();
     }
-    
+
     @Test
     @Description("Verify Suite Room has all features are listed")
     @Severity(SeverityLevel.NORMAL)
@@ -41,11 +43,23 @@ public class ReservationPageTests extends BaseTest {
         roomsHrefs.forEach(roomHref -> {
             driver.get(roomHref);
             List<String> roomFeatures =  reservationPage.getRoomFeaturesListed();
-            softAssert.assertTrue(roomFeatures.contains("Radio"));
-            softAssert.assertTrue(roomFeatures.contains("WiFi"));
-            softAssert.assertTrue(roomFeatures.contains("Safe"));
+            softAssert.assertTrue(roomFeatures.contains("Radio"), "Room should have Radio feature. Actual features:"+ roomFeatures);
+            softAssert.assertTrue(roomFeatures.contains("WiFi"), "Room should have WiFi feature. Actual features:"+ roomFeatures);
+            softAssert.assertTrue(roomFeatures.contains("Safe"), "Room should have Safe feature. Actual features:"+ roomFeatures);
         });
         softAssert.assertAll();
+    }
+
+    @Test
+    @Description("Select Check-in/Check-out dates")
+    @Severity(SeverityLevel.NORMAL)
+    public void selectCheckInCheckOutDatesToDefaultRoom(){
+        String validRoomHref = homePage.checkRoomsAvailabilityWithDefaultDate()
+                .stream().filter(Objects::nonNull)
+                .findFirst().get();
+        driver.get(validRoomHref);
+
+
     }
 
 }
