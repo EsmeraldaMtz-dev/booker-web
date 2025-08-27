@@ -1,17 +1,13 @@
 package org.upskillher.web.tests;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Severity;
+import io.qameta.allure.*;
 import io.qameta.allure.SeverityLevel;
-import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import org.upskillher.web.base.BaseTest;
-import org.upskillher.web.maps.HomePageMaps;
 import org.upskillher.web.pages.HomePage;
 import org.upskillher.web.pages.ReservationPage;
 
@@ -39,7 +35,7 @@ public class ReservationPageTests extends BaseTest {
     @Description("Verify Suite Room has all features are listed")
     @Severity(SeverityLevel.NORMAL)
     public void searchRooms(){
-        List<String> roomsHrefs = homePage.checkRoomsAvailabilityWithDefaultDate();
+        List<String> roomsHrefs = homePage.getRoomsWithDefaultAvailabilityDate();
         roomsHrefs.forEach(roomHref -> {
             driver.get(roomHref);
             List<String> roomFeatures =  reservationPage.getRoomFeaturesListed();
@@ -50,16 +46,15 @@ public class ReservationPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test
-    @Description("Select Check-in/Check-out dates")
+    @Test(description = "Select Check-in/Check-out dates")
+    @Epic("Home Page Tests")
+    @Feature("Rooms Availability")
+    @Story("Check Rooms Availability With Default Date")
     @Severity(SeverityLevel.NORMAL)
     public void selectCheckInCheckOutDatesToDefaultRoom(){
-        String validRoomHref = homePage.checkRoomsAvailabilityWithDefaultDate()
-                .stream().filter(Objects::nonNull)
-                .findFirst().get();
-        driver.get(validRoomHref);
-
-
+        homePage.selectARoom();
+        reservationPage.setCheckInCheckOutDatesAndReserve();
+        reservationPage.fillCustomerData();
     }
 
 }

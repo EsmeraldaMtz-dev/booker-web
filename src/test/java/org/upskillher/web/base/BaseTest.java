@@ -1,7 +1,9 @@
 package org.upskillher.web.base;
 
-import io.restassured.RestAssured;
+import io.qameta.allure.Attachment;
 import io.restassured.builder.RequestSpecBuilder;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.slf4j.Logger;
@@ -38,5 +40,13 @@ public class BaseTest {
 
     protected void navigateToHomePage(){
         driver.get(BASE_URL);
+    }
+    protected void navigateToAdminPage(){
+        driver.get(BASE_URL+"/admin");
+    }
+
+    @Attachment(value = "Screenshot", type = "image/png")
+    public byte[] takeScreenshot() {
+        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
 }

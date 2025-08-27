@@ -52,15 +52,21 @@ public abstract class BasePage {
     }
 
     protected String getSafeText(By locator){
-        String safeText = wait.until(ExpectedConditions.visibilityOf((WebElement) locator)).getText();
+        String safeText = wait.until(ExpectedConditions.visibilityOf((WebElement) locator)).getText().trim();
         log.debug("Getting text from '{}'", locator);
         return safeText;
     }
 
     protected String getSafeText(WebElement element){
-        String safeText = wait.until(ExpectedConditions.visibilityOf(element)).getText();
+        String safeText = wait.until(ExpectedConditions.visibilityOf(element)).getText().trim();
         log.debug("Getting text from WebElement '{}'", element);
         return safeText;
+    }
+
+    protected void setSafeText(By element, String text) {
+        WebElement input = wait.until(ExpectedConditions.elementToBeClickable(element));
+        input.clear();
+        input.sendKeys(text);
     }
 
 }

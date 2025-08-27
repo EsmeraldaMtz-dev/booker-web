@@ -1,0 +1,207 @@
+<node>
+    <id>100</id>
+    <title>Website Functional Tests</title>
+    <description>Functional tests for AutomationInTesting website including navigation, booking flow and admin validation.</description>
+    <preconditions>Website is accessible at https://automationintesting.online/</preconditions>
+    <suites></suites>
+    <cases>
+
+        <node>
+            <id>101</id>
+            <title>Navbar links navigate correctly</title>
+            <description>Verify all navbar links lead to the correct pages.</description>
+            <priority>high</priority>
+            <severity>major</severity>
+            <steps_type>classic</steps_type>
+            <steps>
+                <node>
+                    <position>1</position>
+                    <action>Click "Home" in navbar</action>
+                    <expected_result>Home page loads</expected_result>
+                </node>
+                <node>
+                    <position>2</position>
+                    <action>Click "Rooms" in navbar</action>
+                    <expected_result>Rooms page loads</expected_result>
+                </node>
+                <node>
+                    <position>3</position>
+                    <action>Click "Contact" in navbar</action>
+                    <expected_result>Contact page loads</expected_result>
+                </node>
+            </steps>
+        </node>
+
+        <node>
+            <id>102</id>
+            <title>Check Availability shows rooms</title>
+            <description>Ensure availability widget returns available rooms.</description>
+            <priority>high</priority>
+            <severity>blocker</severity>
+            <steps_type>classic</steps_type>
+            <steps>
+                <node>
+                    <position>1</position>
+                    <action>Go to Home page</action>
+                    <expected_result>Check Availability section is visible</expected_result>
+                </node>
+                <node>
+                    <position>2</position>
+                    <action>Click "Check Availability"</action>
+                    <expected_result>Available rooms are listed</expected_result>
+                </node>
+            </steps>
+        </node>
+
+        <node>
+            <id>103</id>
+            <title>Main pages render correctly</title>
+            <description>Home, Rooms, Contact pages render with expected content</description>
+            <priority>medium</priority>
+            <severity>normal</severity>
+            <steps_type>classic</steps_type>
+            <steps>
+                <node>
+                    <position>1</position>
+                    <action>Open Home page</action>
+                    <expected_result>Content loads without errors</expected_result>
+                </node>
+                <node>
+                    <position>2</position>
+                    <action>Open Rooms page</action>
+                    <expected_result>Room list visible</expected_result>
+                </node>
+                <node>
+                    <position>3</position>
+                    <action>Open Contact page</action>
+                    <expected_result>Contact form visible</expected_result>
+                </node>
+            </steps>
+        </node>
+
+        <node>
+            <id>104</id>
+            <title>End-to-End booking flow with admin validation</title>
+            <description>Complete reservation flow including admin panel verification</description>
+            <priority>high</priority>
+            <severity>blocker</severity>
+            <steps_type>classic</steps_type>
+            <steps>
+                <node>
+                    <position>1</position>
+                    <action>Open website and navigate to Home</action>
+                    <expected_result>Site loads correctly</expected_result>
+                </node>
+                <node>
+                    <position>2</position>
+                    <action>Use Check Availability</action>
+                    <expected_result>Rooms are displayed</expected_result>
+                </node>
+                <node>
+                    <position>3</position>
+                    <action>Select a suite room</action>
+                    <expected_result>Room details show features: Radio, WiFi, Safe</expected_result>
+                </node>
+                <node>
+                    <position>4</position>
+                    <action>Select check-in and check-out dates</action>
+                    <expected_result>Dates are accepted</expected_result>
+                </node>
+                <node>
+                    <position>5</position>
+                    <action>Submit booking</action>
+                    <expected_result>Confirmation message shown</expected_result>
+                </node>
+                <node>
+                    <position>6</position>
+                    <action>Login to Admin with username=admin, password=password</action>
+                    <expected_result>Admin dashboard loads</expected_result>
+                </node>
+                <node>
+                    <position>7</position>
+                    <action>Check bookings list</action>
+                    <expected_result>New booking appears with correct data</expected_result>
+                </node>
+            </steps>
+        </node>
+
+        <node>
+            <id>105</id>
+            <title>Contact form submission</title>
+            <description>Ensure messages submitted via contact form are received in Admin</description>
+            <priority>medium</priority>
+            <severity>major</severity>
+            <steps_type>classic</steps_type>
+            <steps>
+                <node>
+                    <position>1</position>
+                    <action>Open Contact page</action>
+                    <expected_result>Form visible</expected_result>
+                </node>
+                <node>
+                    <position>2</position>
+                    <action>Fill form with valid name, email, subject, message</action>
+                    <expected_result>Form accepts input</expected_result>
+                </node>
+                <node>
+                    <position>3</position>
+                    <action>Submit form</action>
+                    <expected_result>Confirmation message appears</expected_result>
+                </node>
+                <node>
+                    <position>4</position>
+                    <action>Login as admin and navigate to Messages</action>
+                    <expected_result>Message appears in list</expected_result>
+                </node>
+            </steps>
+        </node>
+
+        <node>
+            <id>106</id>
+            <title>Admin logout works correctly</title>
+            <description>Ensure logout invalidates session</description>
+            <priority>low</priority>
+            <severity>normal</severity>
+            <steps_type>classic</steps_type>
+            <steps>
+                <node>
+                    <position>1</position>
+                    <action>Login to Admin</action>
+                    <expected_result>Dashboard visible</expected_result>
+                </node>
+                <node>
+                    <position>2</position>
+                    <action>Click Logout</action>
+                    <expected_result>Redirected to login screen</expected_result>
+                </node>
+                <node>
+                    <position>3</position>
+                    <action>Try accessing dashboard again without logging in</action>
+                    <expected_result>Access denied, login required</expected_result>
+                </node>
+            </steps>
+        </node>
+
+        <node>
+            <id>107</id>
+            <title>No broken links on website</title>
+            <description>Validate that all main page links return HTTP 200</description>
+            <priority>low</priority>
+            <severity>minor</severity>
+            <steps_type>classic</steps_type>
+            <steps>
+                <node>
+                    <position>1</position>
+                    <action>Collect all links from Home, Rooms, Contact pages</action>
+                    <expected_result>Links are listed</expected_result>
+                </node>
+                <node>
+                    <position>2</position>
+                    <action>Verify each link returns HTTP 200</action>
+                    <expected_result>No broken links</expected_result>
+                </node>
+            </steps>
+        </node>
+
+    </cases>
+</node>

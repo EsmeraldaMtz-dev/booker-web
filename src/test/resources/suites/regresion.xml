@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="SmokeSuite" verbose="1" parallel="false">
+
+    <test name="SmokeTests">
+        <classes>
+            <!-- Cambia el package y clase a una que ya exista en tu proyecto -->
+            <class name="org.upskillher.web.tests.HomePageTest"/>
+        </classes>
+    </test>
+
+</suite>
